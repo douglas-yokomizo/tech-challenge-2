@@ -1,0 +1,11 @@
+services:
+  app:
+    build: .
+    ports:
+      - '8000:8000'
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - .:/src
+      - /src/node_modules
+    command: npm run dev
