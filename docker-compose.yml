@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
   app:
     build: .
@@ -5,7 +7,20 @@ services:
       - '8000:8000'
     environment:
       - NODE_ENV=production
+      - MONGO_URI=mongodb://mongo:27017/tech-challenge-2/
     volumes:
       - .:/src
       - /src/node_modules
     command: npm run dev
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:latest
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
