@@ -7,7 +7,7 @@ services:
       - '8000:8000'
     environment:
       - NODE_ENV=production
-      - MONGO_URI=mongodb://mongo:27017/tech-challenge-2/
+      - MONGO_URI=mongodb://mongo:27017/tech-challenge-2
     volumes:
       - .:/src
       - /src/node_modules

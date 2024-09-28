@@ -15,8 +15,8 @@ router.get('/', async (req, res) => {
 
 // Create a new post
 router.post('/', async (req, res) => {
-  const newPost = new Post(req.body)
   try {
+    const newPost = new Post(req.body)
     await newPost.save()
     res.status(201).send(newPost)
   } catch (error) {
@@ -31,6 +31,7 @@ router.get('/:id', async (req, res) => {
     if (!postById) {
       return res.status(404).send()
     }
+    res.status(200).json(postById)
   } catch (error) {
     res.status(500).send(error)
   }
