@@ -1,9 +1,10 @@
-import express from 'express';
+// src/app.ts
+import express from 'express'
+import postRoutes from './routes/post.routes'
 
-const app = express();
+const app = express()
 
-app.get('/', (req, res) => {
-  res.status(200).send('Ok');
-});
+app.use(express.json()) // it parses incoming requests with JSON payloads without this middleware, req.body will be undefined
+app.use('/posts', postRoutes)
 
-export default app;
+export default app
