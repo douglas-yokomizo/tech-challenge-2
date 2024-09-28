@@ -1,23 +1,69 @@
 # TECH-CHALLENGE-2
 
--> Para iniciar o servidor:
+Tech Challenge 2 é uma API em Node.JS que integra um Banco de Dados MongoDB, desenvolvida como atividade que integra os conhecimentos adquiridos durante o módulo de Backend e Qualidade da Pós Tech FIAP Full Stack Development do Grupo 1 Turma 2FSDT.
 
-> npm install
+- Clonar código no GitHub:
 
-> npm run dev
+`git clone git@github.com:douglas-yokomizo/tech-challenge-2.git`
 
--> Para Buildar o TypeScript:
+## Instalação Docker
 
-> npm run build
+- Subir a aplicação utilizando Docker:
 
--> Para iniciar o servidor buildado (Em JavaScript)
+`docker-compose up`
 
-> npm run start
+## Instalação Local
 
--> Para formatar o code
+- Subir a aplicação local:
 
-> npm run format
+`npm install && npm run dev`
 
--> Para verificar padronização do codigo:
+- Buildar o TypeScript e subir o servidor local:
 
-> npm run lint
+`npm run build && npm run start`
+
+- Para formatar o code:
+
+`npm run format`
+
+- Para verificar padronização do código:
+
+`npm run lint`
+
+## Endpoints
+
+Executar via Postman utilizando url: `http://localhost:8000/`
+
+- New Post
+
+`POST /posts`
+
+```typescript
+{
+  "title": "ChallengeNew",
+  "content": "API criando um post."
+}
+```
+
+- All Posts
+
+`GET /posts`
+
+- Single Post
+
+`GET /posts/:id`
+
+- Update Post
+
+`PATCH /posts/:id`
+
+```typescript
+{
+  "title": "ChallengeUpdate",
+  "content": "API atualizando um post."
+}
+```
+
+- Delete Post
+
+`DELETE /posts/:id`
