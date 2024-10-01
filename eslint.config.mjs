@@ -7,7 +7,10 @@ import prettierConfig from 'eslint-config-prettier'
 export default {
   files: ['**/*.{js,mjs,cjs,ts}'],
   languageOptions: {
-    globals: globals.browser, // Define os globals conforme necessário
+    globals: {
+      ...globals.browser, // Define browser globals
+      ...globals.node, // Define Node.js globals
+    },
   },
   plugins: {
     'eslint-plugin': pluginJs,
@@ -22,12 +25,12 @@ export default {
     // Desabilitar regras que podem conflitar com Prettier
     ...prettierConfig.rules,
 
-    // Suas regras personalizadas
     'no-console': 'warn', // Exemplo: Avisar sobre o uso de console.log
     '@typescript-eslint/explicit-module-boundary-types': 'off', // Exemplo: Desabilitar a exigência de tipos explícitos em funções
     'prettier/prettier': [
       'error',
       {
+        endOfLine: 'lf', // Ensure LF line endings
         printWidth: 80,
         tabWidth: 2,
         singleQuote: true,
