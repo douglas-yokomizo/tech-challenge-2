@@ -45,7 +45,7 @@ jobs:
             echo "Waiting for MongoDB..."
             sleep 2
           done
-          echo "MongoDB did not become ready in time"
+          echo "MongoDB did not become ready in time"    
           exit 1
 
       - name: Run lint
