@@ -2,6 +2,7 @@ import { Request, Response } from 'express'
 import Post from '../models/post.model'
 
 // Get all posts
+// eslint-disable-next-line @ts-ignore
 export const getAllPosts = async (req: Request, res: Response) => {
   try {
     const allPosts = await Post.find()
