@@ -1,12 +1,6 @@
-name: CI/CD Pipeline
+name: CI
 
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+on: [push, pull_request]
 
 jobs:
   build:
@@ -35,7 +29,13 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Wait for MongoDB
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+
+      - name: Wait for MongoDB to be ready
         run: |
           until nc -z localhost 27017; do
             echo "Waiting for MongoDB...";
