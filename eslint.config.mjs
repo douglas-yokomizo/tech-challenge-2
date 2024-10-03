@@ -3,34 +3,40 @@ import pluginJs from '@eslint/js'
 import tseslint from '@typescript-eslint/eslint-plugin'
 import prettier from 'eslint-plugin-prettier'
 import prettierConfig from 'eslint-config-prettier'
+import tsParser from '@typescript-eslint/parser'
 
 export default {
   files: ['**/*.{js,mjs,cjs,ts}'],
   languageOptions: {
+    parser: tsParser,
+    parserOptions: {
+      ecmaVersion: 2022,
+      sourceType: 'module',
+    },
+    ecmaVersion: 2022,
+    sourceType: 'module',
     globals: {
-      ...globals.browser, // Define browser globals
-      ...globals.node, // Define Node.js globals
+      ...globals.browser,
+      ...globals.node,
     },
   },
+
   plugins: {
     'eslint-plugin': pluginJs,
     '@typescript-eslint': tseslint,
     prettier: prettier,
   },
   rules: {
-    // Regras específicas do plugin JavaScript
     ...pluginJs.configs.recommended.rules,
-    // Regras recomendadas do TypeScript
     ...tseslint.configs.recommended.rules,
-    // Desabilitar regras que podem conflitar com Prettier
     ...prettierConfig.rules,
 
-    'no-console': 'warn', // Exemplo: Avisar sobre o uso de console.log
-    '@typescript-eslint/explicit-module-boundary-types': 'off', // Exemplo: Desabilitar a exigência de tipos explícitos em funções
+    'no-console': 'warn',
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
     'prettier/prettier': [
       'error',
       {
-        endOfLine: 'lf', // Ensure LF line endings
+        endOfLine: 'lf',
         printWidth: 80,
         tabWidth: 2,
         singleQuote: true,
