@@ -1,12 +1,6 @@
-name: CI/CD Pipeline
+name: CI
 
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+on: [push, pull_request]
 
 jobs:
   build:
@@ -14,7 +8,7 @@ jobs:
 
     services:
       mongo:
-        image: mongo:latest
+        image: mongo:5.0
         ports:
           - 27017:27017
         options: >-
@@ -35,6 +29,19 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+
+      - name: Wait for MongoDB to be ready
+        run: |
+          until nc -z localhost 27017; do
+            echo "Waiting for MongoDB...";
+            sleep 5;
+          done
+
       - name: Run lint
         run: npm run lint
 
@@ -43,8 +50,3 @@ jobs:
 
       - name: Build project
         run: npm run build
-
-      - name: Start application
-        run: npm run start
-        env:
-          MONGO_URI: mongodb://localhost:27017/tech-challenge-2

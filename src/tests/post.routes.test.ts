@@ -3,6 +3,7 @@ import request from 'supertest'
 import mongoose from 'mongoose'
 import app from '../app'
 import Post from '../models/post.model'
+
 const mongoUri = 'mongodb://localhost:27017/tech-challenge-2-test'
 
 beforeAll(async () => {
