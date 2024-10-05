@@ -49,7 +49,7 @@ jobs:
           done
 
       - name: Run lint  # Step to run lint on the code
-        run: npm run lint -- --debug  # Command to run lint with debug information
+        run: timeout 10s npm run lint -- --debug  # Command to run lint with debug information
 
       - name: Run tests  # Step to run tests
         run: npm test  # Command to run tests
