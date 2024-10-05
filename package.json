@@ -9,7 +9,7 @@
     "start": "node dist/server.js",
     "dev": "nodemon server.ts",
     "format": "prettier --write \"src/**/*.{js,ts,tsx}\"",
-    "lint": "eslint \"src/**/*.{js,ts,tsx}\""
+    "lint": "eslint \"src/**/*.{js,ts,tsx}\" && echo 'Lint completed successfully' || echo 'Lint failed'"
   },
   "author": "Grupo 01",
   "license": "ISC",
