@@ -1,7 +1,7 @@
 import mongoose from 'mongoose' // Importing the mongoose library for MongoDB connection
 import app from './src/app' // Importing the app from the source folder
 import dotenv from 'dotenv' // Importing dotenv to manage environment variables
-import { env } from './src/env' // Importing environment variables from the env file
+import { env } from './src/env' // Importing environment variables from the .env file
 
 dotenv.config() // Loading environment variables from the .env file
 
