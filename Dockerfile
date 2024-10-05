@@ -1,15 +1,22 @@
-FROM node:20.17.0 # Using Node.js version 20.17.0 as the base image
+# Using Node.js version 20.17.0 as the base image
+FROM node:20.17.0
 
 WORKDIR /src # Setting the working directory to /src
 
-COPY package*.json ./ # Copying package.json and package-lock.json to the working directory
+# Copying package.json and package-lock.json to the working directory
+COPY package*.json ./
 
-RUN npm install # Installing dependencies defined in package.json
+# Installing dependencies defined in package.json
+RUN npm install
 
-COPY . . # Copying all files from the current directory to the working directory
+# Copying all files from the current directory to the working directory
+COPY . .
 
-RUN npm run build # Building the application (e.g., compiling TypeScript, bundling, etc.)
+# Building the application (e.g., compiling TypeScript, bundling, etc.)
+RUN npm run build
 
-EXPOSE 8000 # Exposing port 8000 for the application
+#Exposing port 8000 for the application
+EXPOSE 8000
 
-CMD ["npm", "dev"] # Defining the command to run the application in development mode
+# Defining the command to run the application in development mode
+CMD ["npm", "dev"]
