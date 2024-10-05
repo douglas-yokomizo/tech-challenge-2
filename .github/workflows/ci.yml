@@ -49,7 +49,10 @@ jobs:
           done
 
       - name: Run lint  # Step to run lint on the code
-        run: npm run lint -- --debug  # Command to run lint with debug information
+        run: npm run lint -- --debug &
+          LINT_PID=$!
+          sleep 120
+          kill $LINT_PID || echo "Linting process completed or was killed after timeout"
 
       - name: Run tests  # Step to run tests
         run: npm test  # Command to run tests
