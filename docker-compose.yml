@@ -1,26 +1,26 @@
-version: '3.8'
+version: '3.8' # Specifying the version of the Docker Compose file format
 
 services:
-  app:
-    build: .
+  app: # Defining the application service
+    build: . # Building the Docker image from the current directory
     ports:
-      - '8000:8000'
+      - '8000:8000' # Mapping host port 8000 to container port 8000
     environment:
-      - NODE_ENV=production
-      - MONGO_URI=mongodb://mongo:27017/tech-challenge-2
+      - NODE_ENV=production # Setting the Node.js environment to production
+      - MONGO_URI=mongodb://mongo:27017/tech-challenge-2 # MongoDB connection URI
     volumes:
-      - .:/src
-      - /src/node_modules
-    command: npm run dev
+      - .:/src # Mounting the current directory to /src in the container
+      - /src/node_modules # Preventing overwriting of node_modules folder
+    command: npm run dev # Command to run the application in development mode
     depends_on:
-      - mongo
+      - mongo # Ensuring that the mongo service starts before this service
 
-  mongo:
-    image: mongo:latest
+  mongo: # Defining the MongoDB service
+    image: mongo:latest # Using the latest MongoDB image
     ports:
-      - '27017:27017'
+      - '27017:27017' # Mapping host port 27017 to container port 27017
     volumes:
-      - mongo-data:/data/db
+      - mongo-data:/data/db # Persisting MongoDB data in a named volume
 
 volumes:
-  mongo-data:
+  mongo-data: # Defining a named volume for MongoDB data persistence

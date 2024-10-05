@@ -1,10 +1,10 @@
 {
-  "semi": false,
-  "singleQuote": true,
-  "trailingComma": "all",
-  "printWidth": 80,
-  "tabWidth": 2,
-  "bracketSpacing": true,
-  "arrowParens": "always",
-  "endOfLine": "lf"
+  "semi": false, // Disabling semicolons at the end of statements
+  "singleQuote": true, // Using single quotes instead of double quotes
+  "trailingComma": "all", // Adding trailing commas wherever possible
+  "printWidth": 80, // Setting the maximum line length to 80 characters
+  "tabWidth": 2, // Setting the number of spaces per indentation level to 2
+  "bracketSpacing": true, // Enabling spaces between brackets in object literals
+  "arrowParens": "always", // Always including parentheses around arrow function parameters
+  "endOfLine": "lf" // Setting line endings to LF (Line Feed)
 }
