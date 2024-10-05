@@ -19,9 +19,9 @@ jobs:
           - 27017:27017  # Port mapping for MongoDB
         options: >-  # Options to ensure that MongoDB is healthy
           --health-cmd "mongo --eval 'db.runCommand(\"ping\").ok'" 
-          --health-interval 10s  # Health check interval
-          --health-timeout 5s  # Timeout for the health check
-          --health-retries 5  # Number of retries before considering the service unhealthy
+          --health-interval 10s  
+          --health-timeout 5s  
+          --health-retries 5  
 
     steps:  # Steps to be executed in the job
       - name: Checkout code  # Step to check out the code from the repository
