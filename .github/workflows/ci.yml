@@ -3,10 +3,10 @@ name: CI  # Name of the continuous integration workflow
 on:
   push:  # Trigger the workflow on a push
     branches:
-      - '*'  # Only on the main branch
+      - '*'  # Any branch
   pull_request:  # Trigger the workflow on a pull request
     branches:
-      - '*'  # Only on the main branch
+      - '*'  # Any branch
 
 jobs:
   build:  # Definition of the job called 'build'
@@ -48,7 +48,7 @@ jobs:
             sleep 5;  # Wait for 5 seconds before checking again
           done
 
-        - name: Run lint  # Step to run lint on the code
+      - name: Run lint  # Step to run lint on the code
         run: npm run lint -- --debug  # Command to run lint with debug information
 
       - name: Run tests  # Step to run tests
