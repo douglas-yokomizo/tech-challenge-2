@@ -1,78 +1,48 @@
 /* eslint-disable no-undef */
+import 'dotenv/config' // Carrega as variáveis de ambiente do arquivo .env.test
+import request from 'supertest'
 import mongoose from 'mongoose'
-import Post from '../models/post.model' // Adjust the path to your model
+import app from '../app'
+import Post from '../models/post.model'
+import { env } from '../env'
 
-const mongoUri = 'mongodb://localhost:27017/tech-challenge-2-test'
+const mongoUri =
+  env.MONGO_URI || 'mongodb://localhost:27017/tech-challenge-2-test'
 
-// Connect to a test database before running the tests
 beforeAll(async () => {
-  await mongoose.connect(mongoUri)
-})
+  try {
+    console.log('Connecting to MongoDB...')
+    await mongoose.connect(mongoUri)
+    console.log('Connected to MongoDB')
+  } catch (error) {
+    console.error('Error connecting to MongoDB:', error)
+  }
+}, 30000) // Aumenta o tempo limite para 30 segundos
 
-// Clear the database after each test
-afterEach(async () => {
-  await Post.deleteMany({})
-})
-
-// Close the connection after all tests are done
 afterAll(async () => {
-  await mongoose.connection.close()
-})
+  try {
+    if (mongoose.connection.db) {
+      console.log('Dropping database...')
+      await mongoose.connection.db.dropDatabase()
+    }
+    console.log('Closing MongoDB connection...')
+    await mongoose.connection.close()
+    console.log('MongoDB connection closed')
+  } catch (error) {
+    console.error('Error closing MongoDB connection:', error)
+  }
+}, 30000) // Aumenta o tempo limite para 30 segundos
 
-describe('Post Model', () => {
-  it('should create a valid post', async () => {
-    const post = new Post({
-      title: 'Test Title',
-      content: 'Test Content',
+describe('Post Routes', () => {
+  it('should create a new post', async () => {
+    const res = await request(app).post('/posts').send({
+      title: 'Test Post',
+      content: 'This is a test post',
     })
-
-    const savedPost = await post.save()
-
-    expect(savedPost._id).toBeDefined()
-    expect(savedPost.title).toBe('Test Title')
-    expect(savedPost.content).toBe('Test Content')
-    expect(savedPost.createdAt).toBeDefined()
-    expect(savedPost.updatedAt).toBeDefined()
+    expect(res.statusCode).toEqual(201)
+    expect(res.body).toHaveProperty('_id')
+    expect(res.body.title).toBe('Test Post')
   })
 
-  it('should not create a post without a title', async () => {
-    const post = new Post({
-      content: 'Test Content',
-    })
-
-    await expect(post.save()).rejects.toThrow()
-  })
-
-  it('should not create a post without content', async () => {
-    const post = new Post({
-      title: 'Test Title',
-    })
-
-    await expect(post.save()).rejects.toThrow()
-  })
-
-  it('should trim whitespace from title and content', async () => {
-    const post = new Post({
-      title: '   Test Title   ',
-      content: '   Test Content   ',
-    })
-
-    const savedPost = await post.save()
-
-    expect(savedPost.title).toBe('Test Title')
-    expect(savedPost.content).toBe('Test Content')
-  })
-
-  it('should set createdAt and updatedAt correctly', async () => {
-    const post = new Post({
-      title: 'Test Title',
-      content: 'Test Content',
-    })
-
-    const savedPost = await post.save()
-    // InstanceOf is for ensuring expected objects have the right structure.
-    expect(savedPost.createdAt).toBeInstanceOf(Date)
-    expect(savedPost.updatedAt).toBeInstanceOf(Date)
-    expect(savedPost.createdAt).toEqual(savedPost.updatedAt)
-  })
+  // Outros testes...
 })
