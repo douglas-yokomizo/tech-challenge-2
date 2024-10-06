@@ -1,23 +1,21 @@
-import mongoose from 'mongoose'
-import app from './src/app'
-import dotenv from 'dotenv'
+import mongoose from 'mongoose' // Importing the mongoose library for MongoDB connection
+import app from './src/app' // Importing the app from the source folder
+import dotenv from 'dotenv' // Importing dotenv to manage environment variables
+import { env } from './src/env' // Importing environment variables from the .env file
 
-// For env File
-dotenv.config()
+dotenv.config() // Loading environment variables from the .env file
 
-const port = process.env.PORT || 8000
-const mongoUri =
-  process.env.MONGO_URI || 'mongodb://localhost:27017/tech-challenge-2'
-
+// Connecting to MongoDB using the connection URI from the environment variables
 mongoose
-  .connect(mongoUri, {})
+  .connect(env.MONGO_URI, {})
   .then(() => {
-    console.log('Connected to MongoDB')
+    console.log('Connected to MongoDB') // Log message on successful connection
   })
   .catch((err) => {
-    console.error('Failed to connect to MongoDB', err)
+    console.error('Failed to connect to MongoDB', err) // Log error message on connection failure
   })
 
-app.listen(port, () => {
-  console.log(`Server is running at http://localhost:${port}`)
+// Starting the server and listening on the specified port
+app.listen(env.PORT, () => {
+  console.log(`Server is running at http://localhost:${env.PORT}`) // Log message indicating the server is running
 })

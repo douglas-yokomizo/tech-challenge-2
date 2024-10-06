@@ -1,29 +1,25 @@
-import mongoose from 'mongoose'
+import { Schema, model, Document } from 'mongoose' // Importing Schema, model, and Document from mongoose
 
-const postSchema = new mongoose.Schema({
-  id: {
-    type: mongoose.Schema.Types.ObjectId,
-  },
-  title: {
-    type: String,
-    required: true,
-    trim: true,
-  },
-  content: {
-    type: String,
-    required: true,
-    trim: true,
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
-  updatedAt: {
-    type: Date,
-    default: Date.now,
-  },
-})
+// Define the PostType interface that extends Document from mongoose
+export interface PostType extends Document {
+  title: string // Title of the post
+  content: string // Content of the post
+  createdAt: Date // Creation date of the post
+  updatedAt: Date // Last update date of the post
+}
 
-const Post = mongoose.model('Post', postSchema)
+// Defining the schema for the Post model
+const postSchema = new Schema<PostType>(
+  {
+    title: { type: String, required: true }, // Title field is a required string
+    content: { type: String, required: true }, // Content field is a required string
+  },
+  {
+    timestamps: true, // Automatically adds createdAt and updatedAt fields
+  },
+)
 
-export default Post
+// Creating the Post model based on the schema
+const Post = model<PostType>('Post', postSchema) // Defining the model with the name 'Post' and the schema
+
+export default Post // Exporting the Post model for use in other modules

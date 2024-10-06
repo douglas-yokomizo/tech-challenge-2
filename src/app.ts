@@ -1,9 +1,13 @@
-import express from 'express'
-import routes from './routes/'
+import express from 'express' // Importing the Express framework
+import routes from './routes/' // Importing the application's routes
+import { errorMiddleware } from './middleware/error' // Importing the error handling middleware
 
-const app = express()
+const app = express() // Creating an instance of the Express application
 
-app.use(express.json()) // it parses incoming requests with JSON payloads without this middleware, req.body will be undefined
-app.use('/', routes)
+app.use(express.json()) // Middleware to parse JSON request bodies
+app.use('/', routes) // Mounting the routes at the root path
 
-export default app
+// Error handling middleware
+app.use(errorMiddleware) // Using the error middleware for handling errors
+
+export default app // Exporting the app instance for use in other modules

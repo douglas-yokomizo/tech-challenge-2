@@ -6,29 +6,19 @@ Tech Challenge 2 é uma API em Node.JS que integra um Banco de Dados MongoDB, de
 
 `git clone git@github.com:douglas-yokomizo/tech-challenge-2.git`
 
-## Instalação Docker
+## Instalação aplicação
 
 - Subir a aplicação utilizando Docker:
 
-`docker-compose up`
+`docker-compose up --build`
 
-## Instalação Local
+- Conferir a publicação http:
 
-- Subir a aplicação local:
+`http://localhost:8000/posts`
 
-`npm install && npm run dev`
+- Rodar testes unitários:
 
-- Buildar o TypeScript e subir o servidor local:
-
-`npm run build && npm run start`
-
-- Para formatar o code:
-
-`npm run format`
-
-- Para verificar padronização do código:
-
-`npm run lint`
+`npm test`
 
 ## Endpoints
 
