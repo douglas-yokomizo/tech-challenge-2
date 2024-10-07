@@ -19,20 +19,6 @@ beforeAll(async () => {
   }
 }, 30000) // Aumenta o tempo limite para 30 segundos
 
-afterAll(async () => {
-  try {
-    if (mongoose.connection.db) {
-      console.log('Dropping database...')
-      await mongoose.connection.db.dropDatabase()
-    }
-    console.log('Closing MongoDB connection...')
-    await mongoose.connection.close()
-    console.log('MongoDB connection closed')
-  } catch (error) {
-    console.error('Error closing MongoDB connection:', error)
-  }
-}, 30000) // Aumenta o tempo limite para 30 segundos
-
 describe('Post Routes', () => {
   it('should create a new post', async () => {
     const res = await request(app).post('/posts').send({

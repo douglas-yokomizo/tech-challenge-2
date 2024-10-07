@@ -13,7 +13,7 @@ export const errorMiddleware = (
   if (error instanceof ZodError) {
     return res
       .status(400) // Respond with a 400 Bad Request status
-      .send({ message: 'Validation error', errors: error.format() }) // Send validation errors
+      .send({ message: 'Validation error', errors: error.errors }) // Send validation errors
   }
 
   // Log the error to the console in development mode
