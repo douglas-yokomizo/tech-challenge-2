@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 
-import 'dotenv/config' // Carrega as variáveis de ambiente do arquivo .env.test
+import 'dotenv/config'
 import request from 'supertest'
 import mongoose from 'mongoose'
 import app from '../app'
@@ -17,7 +17,7 @@ beforeAll(async () => {
   } catch (error) {
     console.error('Error connecting to MongoDB:', error)
   }
-}, 30000) // Aumenta o tempo limite para 30 segundos
+}, 30000)
 
 describe('Post Routes', () => {
   it('should create a new post', async () => {
@@ -29,6 +29,4 @@ describe('Post Routes', () => {
     expect(res.body).toHaveProperty('_id')
     expect(res.body.title).toBe('Test Post')
   })
-
-  // Outros testes...
 })

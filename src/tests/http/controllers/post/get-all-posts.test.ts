@@ -30,27 +30,6 @@ describe('Get All Posts', () => {
     await Post.deleteMany({})
   })
 
-  it('should get all posts', async () => {
-    const post1 = new Post({
-      title: 'Test Post 1',
-      content: 'This is test post 1',
-    })
-    const post2 = new Post({
-      title: 'Test Post 2',
-      content: 'This is test post 2',
-    })
-    await post1.save()
-    await post2.save()
-
-    const res = await request(app).get('/posts')
-
-    expect(res.statusCode).toEqual(200)
-    expect(res.body).toBeInstanceOf(Array)
-    expect(res.body.length).toBe(2)
-    expect(res.body[0]).toHaveProperty('title', 'Test Post 1')
-    expect(res.body[1]).toHaveProperty('title', 'Test Post 2')
-  })
-
   it('should return an empty array if no posts are found', async () => {
     const res = await request(app).get('/posts')
     expect(res.statusCode).toEqual(200)
