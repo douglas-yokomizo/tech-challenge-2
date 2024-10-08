@@ -1,9 +1,9 @@
 /* eslint-disable no-undef */
-
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import express, { Request, Response, NextFunction } from 'express'
 import request from 'supertest'
 import { validateObjectId } from '../../middleware/validateObjectId'
-import { z } from 'zod' // Importar o módulo zod
+import { z } from 'zod'
 
 describe('validateObjectId Middleware', () => {
   let app: express.Application
@@ -17,6 +17,7 @@ describe('validateObjectId Middleware', () => {
     })
 
     // Error handling middleware
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
       res.status(500).json({ message: err.message })
     })

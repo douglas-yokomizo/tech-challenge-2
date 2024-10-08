@@ -1,5 +1,5 @@
-import { Request, Response, NextFunction } from 'express' // Importing types from Express for request handling
-import { ZodError } from 'zod' // Importing ZodError for validation error handling
+import { Request, Response, NextFunction } from 'express'
+import { ZodError } from 'zod'
 import { env } from '../env' // Importing environment variables
 
 // Error handling middleware for Express
@@ -7,6 +7,7 @@ export const errorMiddleware = (
   error: Error, // The error object
   req: Request, // The HTTP request object
   res: Response, // The HTTP response object
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   next: NextFunction, // The next middleware function
 ) => {
   // Check if the error is an instance of ZodError (validation error)

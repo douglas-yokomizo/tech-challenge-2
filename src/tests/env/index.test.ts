@@ -1,8 +1,4 @@
 /* eslint-disable no-undef */
-
-import { z } from 'zod'
-import { envSchema } from '../../env'
-
 describe('envSchema', () => {
   const originalEnv = process.env
 
@@ -28,6 +24,7 @@ describe('envSchema', () => {
 
     // Import the module to trigger the validation
     expect(() => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-require-imports
       require('../../env')
     }).toThrow('Invalid environment variables')
 
