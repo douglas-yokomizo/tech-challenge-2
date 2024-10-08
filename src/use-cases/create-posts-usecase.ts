@@ -5,7 +5,8 @@ import { PostRepository } from '../repositories/post.repository' // Importing th
 export class createPostsCase {
   constructor(private postRepository: PostRepository) {} // Injecting the PostRepository dependency
 
-  handler(post: { title: string; content: string }) { // Method to handle the creation of a post
+  handler(post: { title: string; content: string }) {
+    // Method to handle the creation of a post
     return this.postRepository.createPost(post) // Calling the createPost method on the repository
   }
 }

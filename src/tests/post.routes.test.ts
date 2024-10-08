@@ -1,9 +1,9 @@
 /* eslint-disable no-undef */
+
 import 'dotenv/config' // Carrega as variáveis de ambiente do arquivo .env.test
 import request from 'supertest'
 import mongoose from 'mongoose'
 import app from '../app'
-import Post from '../models/post.model'
 import { env } from '../env'
 
 const mongoUri =
@@ -16,20 +16,6 @@ beforeAll(async () => {
     console.log('Connected to MongoDB')
   } catch (error) {
     console.error('Error connecting to MongoDB:', error)
-  }
-}, 30000) // Aumenta o tempo limite para 30 segundos
-
-afterAll(async () => {
-  try {
-    if (mongoose.connection.db) {
-      console.log('Dropping database...')
-      await mongoose.connection.db.dropDatabase()
-    }
-    console.log('Closing MongoDB connection...')
-    await mongoose.connection.close()
-    console.log('MongoDB connection closed')
-  } catch (error) {
-    console.error('Error closing MongoDB connection:', error)
   }
 }, 30000) // Aumenta o tempo limite para 30 segundos
 

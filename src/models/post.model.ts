@@ -1,7 +1,8 @@
-import { Schema, model, Document } from 'mongoose' // Importing Schema, model, and Document from mongoose
+import { Schema, model, Document, ObjectId } from 'mongoose' // Importing Schema, model, and Document from mongoose
 
 // Define the PostType interface that extends Document from mongoose
 export interface PostType extends Document {
+  _id: ObjectId
   title: string // Title of the post
   content: string // Content of the post
   createdAt: Date // Creation date of the post
