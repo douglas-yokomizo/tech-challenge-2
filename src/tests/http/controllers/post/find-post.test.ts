@@ -53,4 +53,12 @@ describe('Find Post by ID', () => {
     const res = await request(app).get(`/posts/${postId}`)
     expect(res.statusCode).toEqual(500)
   })
+
+  it('should return 200 and the post if the post ID is found', async () => {
+    jest.setTimeout(30000) // Define o tempo limite para 30 segundos
+    const res = await request(app).get(`/posts/${postId}`)
+    expect(res.statusCode).toEqual(200)
+    expect(res.body).toHaveProperty('title', 'Test Post')
+    expect(res.body).toHaveProperty('content', 'This is a test post')
+  })
 })

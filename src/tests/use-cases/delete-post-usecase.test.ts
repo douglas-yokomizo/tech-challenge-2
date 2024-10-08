@@ -1,48 +1,42 @@
-import { DeletePostUseCase } from '../../use-cases/delete-post-usecase'
-import { PostRepository } from '../../repositories/post.repository'
+import request from 'supertest'
+import express from 'express'
+import { deletePostById } from '../../http/controllers/post/deletePostById' // Ajuste o caminho conforme necessário
+import { makeDeletePostUseCase } from '../../use-cases/factory/make-delete-post-usecase'
 
-// Mocking the PostRepository
-const mockPostRepository = {
-  deletePostById: jest.fn(),
-}
+jest.mock('../../use-cases/factory/make-delete-post-usecase')
 
-describe('DeletePostUseCase', () => {
-  let deletePostUseCase: DeletePostUseCase
+const app = express()
+app.use(express.json())
+app.delete('/posts/:id', deletePostById)
 
-  beforeEach(() => {
-    deletePostUseCase = new DeletePostUseCase(
-      mockPostRepository as unknown as PostRepository,
-    )
-  })
+describe('DELETE /posts/:id', () => {
+  it('should respond with a success message if the post was deleted', async () => {
+    const mockDeletePostUseCase = {
+      execute: jest.fn().mockResolvedValue(true),
+    }
+    ;(makeDeletePostUseCase as jest.Mock).mockReturnValue(mockDeletePostUseCase)
 
-  it('should delete a post by ID', async () => {
-    const postId = '12345'
-    mockPostRepository.deletePostById.mockResolvedValue(true)
-
-    const result = await deletePostUseCase.execute(postId)
-
-    expect(mockPostRepository.deletePostById).toHaveBeenCalledWith(postId)
-    expect(result).toBe(true)
-  })
-
-  it('should return false if post is not found', async () => {
-    const postId = '12345'
-    mockPostRepository.deletePostById.mockResolvedValue(false)
-
-    const result = await deletePostUseCase.execute(postId)
-
-    expect(mockPostRepository.deletePostById).toHaveBeenCalledWith(postId)
-    expect(result).toBe(false)
-  })
-
-  it('should handle errors', async () => {
-    const postId = '12345'
-    mockPostRepository.deletePostById.mockRejectedValue(
-      new Error('Database error'),
+    const response = await request(app).delete(
+      '/posts/123456789012345678901234',
     )
 
-    await expect(deletePostUseCase.execute(postId)).rejects.toThrow(
-      'Database error',
+    expect(response.status).toBe(200)
+    expect(response.body).toEqual({ message: 'Post deleted successfully' })
+  })
+
+  it('should respond with a 404 message if the post was not found', async () => {
+    const mockDeletePostUseCase = {
+      execute: jest.fn().mockResolvedValue(false),
+    }
+    ;(makeDeletePostUseCase as jest.Mock).mockReturnValue(mockDeletePostUseCase)
+
+    const response = await request(app).delete(
+      '/posts/123456789012345678901234',
     )
+
+    expect(response.status).toBe(404)
+    expect(response.body).toEqual({
+      message: 'ID 123456789012345678901234 not found',
+    })
   })
 })
