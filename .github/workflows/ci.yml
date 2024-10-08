@@ -44,8 +44,8 @@ jobs:
       - name: Wait for MongoDB to be ready
         run: |
           echo "Waiting for MongoDB to be ready..."
-          until mongo --eval "db.runCommand({ ping: 1 })" &> /dev/null; do
-          sleep 5
+          until mongo --host mongo --eval "db.runCommand({ ping: 1 })" &> /dev/null; do
+            sleep 5
           done
           echo "MongoDB is ready!"
 
