@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+
 import 'dotenv/config'
 import request from 'supertest'
 import mongoose from 'mongoose'

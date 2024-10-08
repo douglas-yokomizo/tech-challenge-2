@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+
 import request from 'supertest'
 import mongoose from 'mongoose'
 import app from '../../../../app'

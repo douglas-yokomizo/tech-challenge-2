@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+
 import express, { Request, Response, NextFunction } from 'express'
 import request from 'supertest'
 import { validateObjectId } from '../../middleware/validateObjectId'

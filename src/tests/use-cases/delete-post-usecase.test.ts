@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+
 import request from 'supertest'
 import express from 'express'
 import { deletePostById } from '../../http/controllers/post/deletePostById' // Ajuste o caminho conforme necessário

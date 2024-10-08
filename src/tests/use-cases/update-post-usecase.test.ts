@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+
 import { UpdatePostUseCase } from '../../use-cases/update-post-usecase'
 import { PostRepository } from '../../repositories/post.repository'
 import { PostType } from '../../models/post.model'

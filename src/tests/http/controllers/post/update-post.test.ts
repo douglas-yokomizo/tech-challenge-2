@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+
 import 'dotenv/config' // Carrega as variáveis de ambiente do arquivo .env.test
 import request from 'supertest'
 import mongoose from 'mongoose'
