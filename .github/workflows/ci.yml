@@ -48,6 +48,11 @@ jobs:
             sleep 5;  # Wait for 5 seconds before checking again
           done
 
+      - name: Install MongoDB client
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y mongodb-clients
+
       - name: Clean MongoDB database
         run: |
           mongo --eval "db.getSiblingDB('test').dropDatabase()"
