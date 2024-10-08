@@ -20,6 +20,10 @@ Tech Challenge 2 é uma API em Node.JS que integra um Banco de Dados MongoDB, de
 
 `npm test`
 
+- Documentação API com Swagger
+
+`http://localhost:8000/api-docs`
+
 ## Endpoints
 
 Executar via Postman utilizando url: `http://localhost:8000/`
