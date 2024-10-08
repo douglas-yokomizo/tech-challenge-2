@@ -5,7 +5,8 @@ import { Types } from 'mongoose' // Importing Types from Mongoose for ObjectId v
 // Custom refinement to validate ObjectId format
 const objectIdRefinement = z
   .string() // Defining a string type
-  .refine((id) => Types.ObjectId.isValid(id), { // Refining to check if the string is a valid ObjectId
+  .refine((id) => Types.ObjectId.isValid(id), {
+    // Refining to check if the string is a valid ObjectId
     message: 'Invalid ID format', // Error message if validation fails
   })
 

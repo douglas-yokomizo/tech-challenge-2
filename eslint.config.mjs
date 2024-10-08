@@ -33,7 +33,7 @@ export default {
     ...tseslint.configs.recommended.rules,
     ...prettierConfig.rules,
 
-    'no-console': 'warn', // Warn on console statements
+    'no-console': 'off', // Off on console statements
     '@typescript-eslint/explicit-module-boundary-types': 'off', // Disable explicit boundary types
     'prettier/prettier': [
       'error',
