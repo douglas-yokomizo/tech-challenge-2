@@ -1,0 +1,165 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Tech Challenge 2 - API Documentation",
+    "version": "1.0.0",
+    "description": "API documentation for the project"
+  },
+  "host": "localhost:8000",
+  "basePath": "/",
+  "schemes": ["http"],
+  "paths": {
+    "/posts": {
+      "get": {
+        "summary": "Get all posts",
+        "description": "Retrieve a list of all posts",
+        "responses": {
+          "200": {
+            "description": "A list of posts",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Post"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new post",
+        "description": "Create a new post with the provided data",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "post",
+            "description": "The post to create",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/NewPost"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Post created successfully",
+            "schema": {
+              "$ref": "#/definitions/Post"
+            }
+          }
+        }
+      }
+    },
+    "/{id}": {
+      "get": {
+        "summary": "Get a single post by ID",
+        "description": "Retrieve a single post by its ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of the post to retrieve",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A single post",
+            "schema": {
+              "$ref": "#/definitions/Post"
+            }
+          },
+          "404": {
+            "description": "Post not found"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update a post by ID",
+        "description": "Update a post with the provided data",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of the post to update",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "post",
+            "description": "The post data to update",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/NewPost"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Post updated successfully",
+            "schema": {
+              "$ref": "#/definitions/Post"
+            }
+          },
+          "404": {
+            "description": "Post not found"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a post by ID",
+        "description": "Delete a post by its ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of the post to delete",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Post deleted successfully"
+          },
+          "404": {
+            "description": "Post not found"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Post": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "example": "12345"
+        },
+        "title": {
+          "type": "string",
+          "example": "My First Post"
+        },
+        "content": {
+          "type": "string",
+          "example": "This is the content of the post."
+        }
+      }
+    },
+    "NewPost": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "example": "My First Post"
+        },
+        "content": {
+          "type": "string",
+          "example": "This is the content of the post."
+        }
+      }
+    }
+  }
+}
