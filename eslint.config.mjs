@@ -38,7 +38,7 @@ export default {
     'prettier/prettier': [
       'error',
       {
-        endOfLine: 'lf', // Setting line endings to LF
+        endOfLine: 'auto', // Setting line endings
         printWidth: 80, // Setting maximum line length
         tabWidth: 2, // Setting tab width
         singleQuote: true, // Using single quotes
