@@ -45,7 +45,7 @@ jobs:
         run: |
           echo "Waiting for MongoDB to be ready..."
           until mongo --eval "db.runCommand({ ping: 1 })" &> /dev/null; do
-            sleep 5
+          sleep 5
           done
           echo "MongoDB is ready!"
 
