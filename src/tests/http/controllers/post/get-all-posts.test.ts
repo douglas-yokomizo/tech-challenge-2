@@ -34,11 +34,13 @@ describe('Get All Posts', () => {
     const post1 = new Post({
       title: 'Test Post 1',
       content: 'This is test post 1',
-    }).save()
+    })
     const post2 = new Post({
       title: 'Test Post 2',
       content: 'This is test post 2',
-    }).save()
+    })
+    await post1.save()
+    await post2.save()
 
     const res = await request(app).get('/posts')
 
