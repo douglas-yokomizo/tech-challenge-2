@@ -43,11 +43,11 @@ jobs:
 
       - name: Wait for MongoDB to be ready
         run: |
-          echo "Waiting for MongoDB to be ready..."
-          until mongo --host mongo --eval "db.runCommand({ ping: 1 })" &> /dev/null; do
-            sleep 5
+          run: |
+          until nc -z localhost 27017; do  # Check if MongoDB port is open
+            echo "Waiting for MongoDB...";  # Waiting message
+            sleep 5;  # Wait for 5 seconds before checking again
           done
-          echo "MongoDB is ready!"
 
       - name: Run lint
         run: npm run lint -- --debug &
