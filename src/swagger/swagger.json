@@ -49,7 +49,7 @@
         }
       }
     },
-    "/{id}": {
+    "/posts/{id}": {
       "get": {
         "summary": "Get a single post by ID",
         "description": "Retrieve a single post by its ID",
