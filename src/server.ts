@@ -1,8 +1,8 @@
 import mongoose from 'mongoose' // Importing the mongoose library for MongoDB connection
-import app from './src/app' // Importing the app from the source folder
+import app from './app' // Importing the app from the source folder
 import dotenv from 'dotenv' // Importing dotenv to manage environment variables
-import { env } from './src/env' // Importing environment variables from the .env file
-import { setupSwagger } from './src/middleware/swagger' // Importing the Swagger setup function
+import { env } from './env' // Importing environment variables from the .env file
+import { setupSwagger } from './middleware/swagger' // Importing the Swagger setup function
 
 dotenv.config() // Loading environment variables from the .env file
 
