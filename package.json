@@ -4,10 +4,11 @@
   "description": "",
   "main": "app.ts",
   "scripts": {
-    "build": "npx tsc",
+    "build": "npx tsc  && npm run copy-swagger",
+    "copy-swagger": "copyfiles -u 1 src/swagger/swagger.json dist",
     "test": "cross-env NODE_ENV=development jest",
     "start": "node dist/server.js",
-    "dev": "nodemon server.ts",
+    "dev": "nodemon src/server.ts",
     "format": "prettier --write \"src/**/*.{js,ts,tsx}\"",
     "lint": "eslint \"src/**/*.{js,ts,tsx}\"",
     "vercel-build": "npm run build"
@@ -27,6 +28,7 @@
     "@typescript-eslint/eslint-plugin": "8.8.0",
     "@typescript-eslint/parser": "8.8.0",
     "babel-jest": "29.7.0",
+    "copyfiles": "2.4.1",
     "cross-env": "7.0.3",
     "eslint": "9.9.0",
     "eslint-config-prettier": "9.1.0",
@@ -48,7 +50,7 @@
     "mongoose": "8.5.3",
     "nodemon": "3.1.4",
     "swagger-jsdoc": "6.2.8",
-    "swagger-ui-express": "5.0.1",
+    "swagger-ui-express": "4.6.2",
     "zod": "3.23.8"
   }
 }
