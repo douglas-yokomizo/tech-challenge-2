@@ -5,7 +5,7 @@
     "version": "1.0.0",
     "description": "API documentation for the project"
   },
-  "host": "tech-challenge-2.vercel.app.vercel.app",
+  "host": "tech-challenge-2.vercel.app",
   "basePath": "/",
   "schemes": ["https"],
   "paths": {
