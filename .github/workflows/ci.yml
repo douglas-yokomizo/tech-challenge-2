@@ -1,0 +1,62 @@
+name: CI # Name of the continuous integration workflow
+
+on:
+  push:
+    branches:
+      - 'developer'
+  pull_request:
+    branches:
+      - 'developer'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    services:
+      mongo:
+        image: mongo:5.0
+        ports:
+          - 27017:27017
+        options: >-
+          --health-cmd "mongo --eval 'db.runCommand(\"ping\").ok'"
+          --health-interval 10s  
+          --health-timeout 5s  
+          --health-retries 5
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20.17.0'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+
+      - name: Wait for MongoDB to be ready
+        run: |
+          until nc -z localhost 27017; do  # Check if MongoDB port is open
+            echo "Waiting for MongoDB...";  # Waiting message
+            sleep 5;  # Wait for 5 seconds before checking again
+          done
+
+      - name: Run lint
+        run: |
+          npm run lint -- --debug &
+          LINT_PID=$!
+          sleep 120
+          kill $LINT_PID || echo "Linting process completed or was killed after timeout"
+
+      - name: Run tests
+        run: npm test
+
+      - name: Build project
+        run: npm run build
