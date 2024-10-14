@@ -48,17 +48,6 @@ jobs:
             sleep 5;  # Wait for 5 seconds before checking again
           done
 
-      - name: Install MongoDB client
-        run: |
-          wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | sudo apt-key add -
-          echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/5.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-5.0.list
-          sudo apt-get update
-          sudo apt-get install -y mongodb-org-shell
-
-      - name: Clean MongoDB database
-        run: |
-          mongo --eval "db.getSiblingDB('test').dropDatabase()"
-
       - name: Run lint
         run: |
           npm run lint -- --debug &
