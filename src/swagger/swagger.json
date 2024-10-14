@@ -45,6 +45,9 @@
             "schema": {
               "$ref": "#/definitions/Post"
             }
+          },
+          "400": {
+            "description": "Invalid data provided"
           }
         }
       }
@@ -71,6 +74,9 @@
           },
           "404": {
             "description": "Post not found"
+          },
+          "400": {
+            "description": "Invalid ID provided"
           }
         }
       },
@@ -104,6 +110,9 @@
           },
           "404": {
             "description": "Post not found"
+          },
+          "400": {
+            "description": "Invalid ID provided / Invalid data provided"
           }
         }
       },
@@ -125,6 +134,9 @@
           },
           "404": {
             "description": "Post not found"
+          },
+          "400": {
+            "description": "Invalid ID provided"
           }
         }
       }
