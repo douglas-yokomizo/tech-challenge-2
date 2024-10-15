@@ -97,6 +97,7 @@ Para facilitar a integração e uso da nossa API, disponibilizamos uma documenta
 Para garantir que todas as funcionalidades da API estejam funcionando corretamente, é recomendado executar os testes unitários. Siga as etapas abaixo para executar os testes:
 
 ```bash
+npm install
 npm test
 ```
 

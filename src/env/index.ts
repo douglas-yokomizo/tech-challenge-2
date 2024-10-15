@@ -1,28 +1,30 @@
-import { z } from 'zod'
-import dotenv from 'dotenv'
+import { z } from 'zod' // Import the Zod library for schema validation
+import dotenv from 'dotenv' // Import dotenv to load environment variables from .env files
 
-// Carregar variáveis de ambiente do arquivo .env
+// Load environment variables from the .env file
 dotenv.config()
 
-// Definir um esquema para validar variáveis de ambiente
+// Define a schema to validate environment variables
 export const envSchema = z.object({
   NODE_ENV: z
     .enum(['development', 'production', 'test'])
-    .default('development'), // O ambiente deve ser 'development', 'production' ou 'test', o padrão é 'development'
-  PORT: z.coerce.number().default(8000), // A porta deve ser um número, o padrão é 8000
+    .default('development'), // The environment must be 'development', 'production', or 'test'; defaults to 'development'
+
+  PORT: z.coerce.number().default(8000), // The port must be a number; defaults to 8000
+
   MONGO_URI: z
     .string()
     .url()
-    .default('mongodb://localhost:27017/tech-challenge'), // A URI do MongoDB deve ser uma string e uma URL válida
+    .default('mongodb://localhost:27017/tech-challenge'), // The MongoDB URI must be a string and a valid URL; defaults to a local MongoDB URI
 })
 
-// Validar as variáveis de ambiente contra o esquema
+// Validate the environment variables against the schema
 const _env = envSchema.safeParse(process.env)
 
 if (!_env.success) {
-  console.error('Invalid environment variables:', _env.error.format())
-  throw new Error('Invalid environment variables')
+  console.error('Invalid environment variables:', _env.error.format()) // Log any validation errors
+  throw new Error('Invalid environment variables') // Throw an error if validation fails
 }
 
-// Exportar as variáveis de ambiente validadas
+// Export the validated environment variables
 export const env = _env.data

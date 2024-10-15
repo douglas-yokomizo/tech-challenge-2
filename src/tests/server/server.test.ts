@@ -1,27 +1,30 @@
-import mongoose from 'mongoose'
-import app from '../../app'
-import { setupSwagger } from '../../middleware/swagger'
+/* eslint-disable no-undef */
 
-jest.mock('../../middleware/swagger') // Mocka o módulo
+import mongoose from 'mongoose' // Import mongoose for database interaction
+import app from '../../app' // Import the application instance
+import { setupSwagger } from '../../middleware/swagger' // Import the Swagger setup function
+
+jest.mock('../../middleware/swagger') // Mock the Swagger middleware module
 
 beforeAll(async () => {
-  // Definindo variáveis de ambiente para testes
-  process.env.MONGO_URI = 'mongodb://localhost:27017/tech-challenge' // URL do banco de dados de teste
-  process.env.PORT = '3001'
+  // Setting environment variables for tests
+  process.env.MONGO_URI = 'mongodb://localhost:27017/tech-challenge' // Test database URL
+  process.env.PORT = '3001' // Set the port for the application
 })
 
-// Mocka o console.error
+// Mock console.error to prevent actual error logging during tests
 const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation()
 
 afterAll(async () => {
-  await mongoose.connection.close() // Fecha a conexão após os testes
-  consoleErrorSpy.mockRestore() // Restaura o console.error original
+  await mongoose.connection.close() // Close the database connection after tests
+  consoleErrorSpy.mockRestore() // Restore the original console.error implementation
 })
 
 describe('Server Setup', () => {
   it('should set up Swagger', () => {
-    require('../../server') // Inicializa o servidor
+    require('../../server') // Initialize the server
 
-    expect(setupSwagger).toHaveBeenCalledWith(app) // Verifica se o setupSwagger foi chamado corretamente
+    // Verify that the setupSwagger function was called with the app instance
+    expect(setupSwagger).toHaveBeenCalledWith(app)
   })
 })
