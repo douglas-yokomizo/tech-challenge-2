@@ -140,75 +140,75 @@ tech-challenge-2
 src
 ├── app.ts
 ├── db
-│   └── database.ts
+│ └── database.ts
 ├── docs
-│   ├── Padroes_de_commits(Commit_Patterns).pdf
-│   ├── por_que_utilizar_mongoDB.pdf
-│   └── versionamento_semantico_2.0.0.pdf
+│ ├── Padroes_de_commits(Commit_Patterns).pdf
+│ ├── por_que_utilizar_mongoDB.pdf
+│ └── versionamento_semantico_2.0.0.pdf
 ├── env
-│   └── index.ts
+│ └── index.ts
 ├── http
-│   └── controllers
-│       └── post
-│           ├── create-post.ts
-│           ├── deletePostById.ts
-│           ├── find-post.ts
-│           ├── get-all-posts.ts
-│           └── update-post.ts
+│ └── controllers
+│ └── post
+│ ├── create-post.ts
+│ ├── deletePostById.ts
+│ ├── find-post.ts
+│ ├── get-all-posts.ts
+│ └── update-post.ts
 ├── middleware
-│   ├── asyncHandler.ts
-│   ├── error.ts
-│   ├── swagger.ts
-│   └── validateObjectId.ts
+│ ├── asyncHandler.ts
+│ ├── error.ts
+│ ├── swagger.ts
+│ └── validateObjectId.ts
 ├── models
-│   └── post.model.ts
+│ └── post.model.ts
 ├── repositories
-│   └── post.repository.ts
+│ └── post.repository.ts
 ├── routes
-│   ├── index.ts
-│   └── post.routes.ts
+│ ├── index.ts
+│ └── post.routes.ts
 ├── server.ts
 ├── swagger
-│   └── swagger.json
+│ └── swagger.json
 ├── tests
-│   ├── db
-│   │   └── database.test.ts
-│   ├── env
-│   │   └── index.test.ts
-│   ├── http
-│   │   └── controllers
-│   │       └── post
-│   │           ├── create-post.test.ts
-│   │           ├── deletePostById.test.ts
-│   │           ├── find-post.test.ts
-│   │           ├── get-all-posts.test.ts
-│   │           └── update-post.test.ts
-│   ├── middleware
-│   │   └── validateObjectId.test.ts
-│   ├── post.model.test.ts
-│   ├── post.repository.test.ts
-│   ├── post.routes.test.ts
-│   ├── server
-│   │   └── server.test.ts
-│   ├── swagger
-│   │   └── swagger.test.ts
-│   └── use-cases
-│       ├── delete-post-usecase.test.ts
-│       ├── find-posts-usecase.test.ts
-│       ├── get-all-posts-usecase.test.ts
-│       └── update-post-usecase.test.ts
+│ ├── db
+│ │ └── database.test.ts
+│ ├── env
+│ │ └── index.test.ts
+│ ├── http
+│ │ └── controllers
+│ │ └── post
+│ │ ├── create-post.test.ts
+│ │ ├── deletePostById.test.ts
+│ │ ├── find-post.test.ts
+│ │ ├── get-all-posts.test.ts
+│ │ └── update-post.test.ts
+│ ├── middleware
+│ │ └── validateObjectId.test.ts
+│ ├── post.model.test.ts
+│ ├── post.repository.test.ts
+│ ├── post.routes.test.ts
+│ ├── server
+│ │ └── server.test.ts
+│ ├── swagger
+│ │ └── swagger.test.ts
+│ └── use-cases
+│ ├── delete-post-usecase.test.ts
+│ ├── find-posts-usecase.test.ts
+│ ├── get-all-posts-usecase.test.ts
+│ └── update-post-usecase.test.ts
 └── use-cases
-    ├── create-posts-usecase.ts
-    ├── delete-post-usecase.ts
-    ├── factory
-    │   ├── make-create-posts-usecase.ts
-    │   ├── make-delete-post-usecase.ts
-    │   ├── make-find-posts-usecase.ts
-    │   ├── make-get-all-posts-usecase.ts
-    │   └── make-update-post-usecase.ts
-    ├── find-posts-usecase.ts
-    ├── get-all-posts-usecase.ts
-    └── update-post-usecase.ts
+├── create-posts-usecase.ts
+├── delete-post-usecase.ts
+├── factory
+│ ├── make-create-posts-usecase.ts
+│ ├── make-delete-post-usecase.ts
+│ ├── make-find-posts-usecase.ts
+│ ├── make-get-all-posts-usecase.ts
+│ └── make-update-post-usecase.ts
+├── find-posts-usecase.ts
+├── get-all-posts-usecase.ts
+└── update-post-usecase.ts
 ```
 
 A API foca na gestão de dados e respostas via JSON, onde a camada View não é necessária, já que não há rendering de interfaces.
