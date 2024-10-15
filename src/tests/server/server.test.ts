@@ -22,6 +22,7 @@ afterAll(async () => {
 
 describe('Server Setup', () => {
   it('should set up Swagger', () => {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
     require('../../server') // Initialize the server
 
     // Verify that the setupSwagger function was called with the app instance
