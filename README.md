@@ -2,13 +2,19 @@
 
 Tech Challenge 2 é uma API em Node.JS que integra um Banco de Dados MongoDB, desenvolvida como atividade que integra os conhecimentos adquiridos durante o módulo de Backend e Qualidade da Pós Tech FIAP Full Stack Development do Grupo 1 Turma 2FSDT.
 
-Membros do grupo 01 - FSDT: RM: 357717 Cristiano Gomes da Rocha, RM: 357154 Diego da Silva Gervasio, RM: 357480 Douglas Yogi Yokomizo, RM: 356535 João Vitor dos Santos Correa e RM: 357920 Marcos Alberto Herrera Bordalo.
+Membros do grupo 1 - 2FSDT:
 
-# Objetivo
+- RM: 357717 Cristiano Gomes da Rocha,
+- RM: 357154 Diego da Silva Gervasio,
+- RM: 357480 Douglas Yogi Yokomizo,
+- RM: 356535 João Vitor dos Santos Correa,
+- RM: 357920 Marcos Alberto Herrera Bordalo.
+
+## Objetivo
 
 O objetivo desta API é gerenciar postagens de blog por meio de operações de CRUD (Criar, Ler, Atualizar e Deletar), facilitando a gestão de conteúdo para administradores e autores.
 
-# Relato de experiências e desafios
+## Relato de experiências e desafios
 
 Desde o início, o grupo decidiu versionar o código diretamente no GitHub, o que permitiu uma organização eficiente da estrutura inicial e dos padrões do projeto. A cada etapa da implementação da API, todos os integrantes eram notificados sobre novos Pull Requests (PRs) abertos na branch principal, garantindo a colaboração contínua e a revisão conjunta do código.
 
@@ -18,7 +24,7 @@ Além disso, os encontros semanais de todo o grupo desempenharam um papel crucia
 
 ---
 
-# Tecnologias utilizadas
+## Tecnologias utilizadas
 
 - Node.js
 - TypeScript
@@ -31,17 +37,17 @@ Além disso, os encontros semanais de todo o grupo desempenharam um papel crucia
 
 ---
 
-# Ambientes
+## Ambientes
 
 Dividimos a api em dois ambientes. Produção (Main) e Desenvolvimento (developer)
 
-A introdução a ambientes de produção e desenvolvimento é fundamental para entender como software é criado, testado e colocado em operação. Aqui estão os conceitos básicos:
+A introdução a ambientes de produção e desenvolvimento é fundamental para entender como o software é criado, testado e colocado em operação. Aqui estão os conceitos básicos:
 
 Desenvolvimento
 
-- Acesso a dados fictícios ou de teste.
-- Execução de testes unitários.
-- Configurações que podem ser alteradas frequentemente.
+- Acesso a dados fictícios ou de teste,
+- Execução de testes unitários,
+- Configurações que podem ser alteradas frequentemente,
 - Foco em inovação e correção de bugs.
 
 Produção
@@ -50,17 +56,19 @@ A branch Main reflete diretamente na API em produção, que está hospedada na V
 
 ---
 
-# Ambiente de Produção
+## Ambiente de Produção
 
 Branch Principal: Utilizamos a branch Main como nossa branch padrão para o ambiente de [produção](https://tech-challenge-2.vercel.app/api-docs/)
+
 Deploy: O deployment das aplicações é realizado através da plataforma [Vercel](https://vercel.com/)
+
 Banco de Dados: Para o armazenamento de dados em produção, utilizamos o banco de dados [MongoDB](https://www.mongodb.com/)
 
 ---
 
-# Ambiente de Desenvolvimento
+## Ambiente de Desenvolvimento
 
-Branch Developer: Utilizanmos a branch developer como nossa branch de desenvolvimento.
+Branch Developer: Utilizamos a branch developer como nossa branch de desenvolvimento.
 
 Para utilizar a API local:
 
@@ -70,7 +78,7 @@ Para utilizar a API local:
 git clone git@github.com:douglas-yokomizo/tech-challenge-2.git
 ```
 
-mudar para a branch developer.
+Mudar para a branch developer.
 
 ## Instalação da aplicação
 
@@ -88,7 +96,9 @@ docker-compose up --build
 
 Para facilitar a integração e uso da nossa API, disponibilizamos uma documentação detalhada através do **Swagger**. Nela, você encontrará todos os endpoints disponíveis, métodos suportados, exemplos de requisições e respostas, bem como informações sobre parâmetros necessários.
 
-`http://localhost:8000/api-docs`
+```bash
+http://localhost:8000/api-docs
+```
 
 ---
 
@@ -110,23 +120,23 @@ Para dúvidas ou sugestões, entre em contato:
 
 ---
 
-# Estrutura do Projeto - Padrão MVC
+## Estrutura do Projeto - Padrão MVC
 
 Este projeto segue uma abordagem baseada no padrão MVC (Model-View-Controller), adaptada para o desenvolvimento da API.
 
 A estrutura do projeto está organizada da seguinte forma:
 
-Model (Camada de Modelos): Camada é responsável pela representação e manipulação dos dados. Aqui, as definições de schemas, entidades e as interações com o banco de dados são implementadas. Exemplo: validação e persistência dos dados no MongoDB.
+Model (Camada de Modelos): é responsável pela representação e manipulação dos dados. Aqui, as definições de schemas, entidades e as interações com o banco de dados são implementadas. Exemplo: validação e persistência dos dados no MongoDB.
 
-Controller (Camada de Controladores): Camada de controladores é responsável por receber as requisições HTTP, processá-las, invocar a lógica de negócios no Model, e devolver a resposta apropriada ao cliente. A lógica dos endpoints da API é centralizada nos controladores, que garantem que as requisições sejam tratadas adequadamente.
+Controller (Camada de Controladores): é responsável por receber as requisições HTTP, processá-las, invocar a lógica de negócios no Model, e devolver a resposta apropriada ao cliente. A lógica dos endpoints da API é centralizada nos controladores, que garantem que as requisições sejam tratadas adequadamente.
 
-Routes (Rotas): As rotas definem os endpoints da API e mapeiam as URLs para os controladores correspondentes. Elas permitem que as requisições HTTP sejam direcionadas para os controladores corretos com base no endpoint acessado.
+Routes (Rotas): definem os endpoints da API e mapeiam as URLs para os controladores correspondentes. Elas permitem que as requisições HTTP sejam direcionadas para os controladores corretos com base no endpoint acessado.
 
 - Estrutura Básica do Projeto
 
 tech-challenge-2
 
-```
+```markdown
 src
 ├── app.ts
 ├── db
@@ -199,7 +209,6 @@ src
     ├── find-posts-usecase.ts
     ├── get-all-posts-usecase.ts
     └── update-post-usecase.ts
-
 ```
 
 A API foca na gestão de dados e respostas via JSON, onde a camada View não é necessária, já que não há rendering de interfaces.
@@ -208,10 +217,10 @@ No projeto, foi aplicada a Inversão de Dependência (DIP) para desacoplar módu
 
 Além disso, os outros princípios do SOLID foram seguidos para garantir escalabilidade:
 
-SRP: Cada classe tem uma única responsabilidade.
-OCP: O código está aberto para extensões sem precisar de modificações.
-LSP: Classes derivadas podem substituir as classes base sem alterar o comportamento.
-ISP: Interfaces específicas evitam dependências desnecessárias.
+- SRP: Cada classe tem uma única responsabilidade,
+- OCP: O código está aberto para extensões sem precisar de modificações,
+- LSP: Classes derivadas podem substituir as classes base sem alterar o comportamento,
+- ISP: Interfaces específicas evitam dependências desnecessárias.
 
 Esses princípios juntos promovem um design flexível e escalável, facilitando a adição de novas funcionalidades sem comprometer a estrutura existente.
 
