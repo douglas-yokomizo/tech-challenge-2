@@ -5,9 +5,9 @@
     "version": "1.0.0",
     "description": "API documentation for the project"
   },
-  "host": "tech-challenge-2.vercel.app",
+  "host": "localhost:8000",
   "basePath": "/",
-  "schemes": ["https"],
+  "schemes": ["http"],
   "paths": {
     "/posts": {
       "get": {
