@@ -74,4 +74,18 @@ describe('Update Post by ID', () => {
     })
     expect(res.statusCode).toEqual(500)
   })
+
+  it('should return 400 if validation fails', async () => {
+    jest.setTimeout(10000) // Define o tempo limite para 10 segundos
+    const res = await request(app).patch(`/posts/${postId}`).send({
+      title: '', // Enviando um título vazio para falhar na validação
+      content: 'This is an updated test post',
+    })
+    expect(res.statusCode).toEqual(400)
+    expect(res.body).toHaveProperty('message')
+    expect(res.body.message[0]).toHaveProperty(
+      'message',
+      'Title cannot be empty',
+    )
+  })
 })

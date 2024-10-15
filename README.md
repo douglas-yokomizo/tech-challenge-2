@@ -16,7 +16,7 @@ As aulas da Fase 2 foram fundamentais para o desenvolvimento do projeto, fornece
 
 Além disso, os encontros semanais de todo o grupo desempenharam um papel crucial, promovendo discussões e alinhamentos que contribuíram para o progresso contínuo e a conclusão bem-sucedida do projeto.
 
-___
+---
 
 # Tecnologias utilizadas
 
@@ -29,12 +29,11 @@ ___
 - Swagger
 - Docker
 
-___
+---
 
 # Ambientes
 
 Dividimos a api em dois ambientes. Produção (Main) e Desenvolvimento (developer)
-
 
 A introdução a ambientes de produção e desenvolvimento é fundamental para entender como software é criado, testado e colocado em operação. Aqui estão os conceitos básicos:
 
@@ -49,7 +48,7 @@ Produção
 
 A branch Main reflete diretamente na API em produção, que está hospedada na Vercel. Qualquer atualização ou merge realizado nessa branch será automaticamente refletido na API em ambiente de produção, portanto, é essencial que o código seja revisado cuidadosamente antes de ser integrado para garantir a estabilidade do sistema.
 
-___
+---
 
 # Ambiente de Produção
 
@@ -106,10 +105,11 @@ npm test
 Duvidas e feedback:
 
 Para dúvidas ou sugestões, entre em contato:
-•    Email: postechfiap4@gmail.com
-___
+• Email: postechfiap4@gmail.com
 
-# Estrutura do Projeto - Padrão MVC 
+---
+
+# Estrutura do Projeto - Padrão MVC
 
 Este projeto segue uma abordagem baseada no padrão MVC (Model-View-Controller), adaptada para o desenvolvimento da API.
 
@@ -125,8 +125,11 @@ Routes (Rotas): As rotas definem os endpoints da API e mapeiam as URLs para os c
 
 tech-challenge-2
 
+```
 src
 ├── app.ts
+├── db
+│   └── database.ts
 ├── docs
 │   ├── Padroes_de_commits(Commit_Patterns).pdf
 │   ├── por_que_utilizar_mongoDB.pdf
@@ -157,6 +160,8 @@ src
 ├── swagger
 │   └── swagger.json
 ├── tests
+│   ├── db
+│   │   └── database.test.ts
 │   ├── env
 │   │   └── index.test.ts
 │   ├── http
@@ -194,6 +199,8 @@ src
     ├── get-all-posts-usecase.ts
     └── update-post-usecase.ts
 
+```
+
 A API foca na gestão de dados e respostas via JSON, onde a camada View não é necessária, já que não há rendering de interfaces.
 
 No projeto, foi aplicada a Inversão de Dependência (DIP) para desacoplar módulos de alto e baixo nível, permitindo maior flexibilidade na troca de implementações e facilitando a manutenção e testes. Com o uso de injeção de dependência, a aplicação torna-se mais modular e pronta para crescer.
@@ -207,4 +214,4 @@ ISP: Interfaces específicas evitam dependências desnecessárias.
 
 Esses princípios juntos promovem um design flexível e escalável, facilitando a adição de novas funcionalidades sem comprometer a estrutura existente.
 
-___
+---
