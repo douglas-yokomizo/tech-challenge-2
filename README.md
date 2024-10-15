@@ -24,13 +24,16 @@ Além disso, os encontros semanais de todo o grupo desempenharam um papel crucia
 
 ---
 
+## Video de apresentação da API
+
+[Assista ao vídeo de apresentação aqui](https://www.youtube.com/watch?v=6SpU6KrfF9E)
+
 ## Tecnologias utilizadas
 
 - Node.js
 - TypeScript
 - MongoDB
 - Express
-- Zod
 - Jest
 - Swagger
 - Docker
