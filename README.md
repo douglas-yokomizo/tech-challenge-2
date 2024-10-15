@@ -39,7 +39,7 @@ Além disso, os encontros semanais de todo o grupo desempenharam um papel crucia
 
 ## Ambientes
 
-Dividimos a api em dois ambientes. Produção (Main) e Desenvolvimento (developer)
+Dividimos a api em dois ambientes. Produção (Main) e Desenvolvimento (developer).
 
 A introdução a ambientes de produção e desenvolvimento é fundamental para entender como o software é criado, testado e colocado em operação. Aqui estão os conceitos básicos:
 
