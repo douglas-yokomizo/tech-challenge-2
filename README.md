@@ -24,13 +24,18 @@ Além disso, os encontros semanais de todo o grupo desempenharam um papel crucia
 
 ---
 
+## Video de apresentação da API
+
+[Assista ao vídeo de apresentação aqui](https://www.youtube.com/watch?v=6SpU6KrfF9E)
+
+---
+
 ## Tecnologias utilizadas
 
 - Node.js
 - TypeScript
 - MongoDB
 - Express
-- Zod
 - Jest
 - Swagger
 - Docker
@@ -39,7 +44,7 @@ Além disso, os encontros semanais de todo o grupo desempenharam um papel crucia
 
 ## Ambientes
 
-Dividimos a api em dois ambientes. Produção (Main) e Desenvolvimento (developer)
+Dividimos a api em dois ambientes. Produção (Main) e Desenvolvimento (developer).
 
 A introdução a ambientes de produção e desenvolvimento é fundamental para entender como o software é criado, testado e colocado em operação. Aqui estão os conceitos básicos:
 

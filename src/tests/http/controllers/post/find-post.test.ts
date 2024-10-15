@@ -7,6 +7,8 @@ import app from '../../../../app' // Import the application instance
 import Post, { PostType } from '../../../../models/post.model' // Import the Post model
 import { env } from '../../../../env' // Import environment variables
 
+jest.setTimeout(30000)
+
 // MongoDB URI for testing, defaults to a local instance if not provided
 const mongoUri =
   env.MONGO_URI || 'mongodb://localhost:27017/tech-challenge-2-test'
@@ -38,7 +40,6 @@ describe('Find Post by ID', () => {
 
   // Test case for handling a non-existent post ID
   it('should return 404 if post ID is not found', async () => {
-    jest.setTimeout(10000) // Set timeout to 10 seconds
     const nonExistentId = new mongoose.Types.ObjectId().toString() // Generate a new non-existent ID
     const res = await request(app).get(`/posts/${nonExistentId}`) // Attempt to retrieve the post
     expect(res.statusCode).toEqual(404) // Check if the response status code is 404 (Not Found)
@@ -47,7 +48,6 @@ describe('Find Post by ID', () => {
 
   // Test case for handling an invalid post ID format
   it('should return 400 for invalid post ID', async () => {
-    jest.setTimeout(10000) // Set timeout to 10 seconds
     const invalidId = '12345' // Invalid ID format
     const res = await request(app).get(`/posts/${invalidId}`) // Attempt to retrieve the post
     expect(res.statusCode).toEqual(400) // Check if the response status code is 400 (Bad Request)
@@ -55,7 +55,6 @@ describe('Find Post by ID', () => {
 
   // Test case for handling errors when finding a post by ID
   it('should handle error when finding a post by ID', async () => {
-    jest.setTimeout(10000) // Set timeout to 10 seconds
     jest.spyOn(Post, 'findById').mockImplementationOnce(() => {
       throw new Error('Database error') // Simulate a database error
     })
@@ -65,7 +64,6 @@ describe('Find Post by ID', () => {
 
   // Test case for successfully finding a post by its ID
   it('should return 200 and the post if the post ID is found', async () => {
-    jest.setTimeout(30000) // Set timeout to 30 seconds
     const res = await request(app).get(`/posts/${postId}`) // Attempt to retrieve the post
     expect(res.statusCode).toEqual(200) // Check if the response status code is 200 (OK)
     expect(res.body).toHaveProperty('title', 'Test Post') // Check if the title matches
