@@ -75,7 +75,7 @@ Para utilizar a API local:
 - Clonar código no GitHub:
 
 ```bash
-git clone git@github.com:douglas-yokomizo/tech-challenge-2.git
+git clone https://github.com/douglas-yokomizo/tech-challenge-2.git
 ```
 
 Mudar para a branch developer.
