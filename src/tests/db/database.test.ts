@@ -1,5 +1,6 @@
 import mongoose from 'mongoose'
 import { connectToDatabase } from '../../db/database'
+import { env } from '../../env'
 
 jest.mock('mongoose', () => ({
   connect: jest.fn(),
@@ -23,7 +24,7 @@ describe('connectToDatabase', () => {
 
     await connectToDatabase()
 
-    expect(mongoose.connect).toHaveBeenCalledWith(process.env.MONGO_URI, {})
+    expect(mongoose.connect).toHaveBeenCalledWith(env.MONGO_URI, {})
     expect(console.log).toHaveBeenCalledWith('Connected to MongoDB')
   })
 
@@ -33,7 +34,7 @@ describe('connectToDatabase', () => {
 
     await connectToDatabase()
 
-    expect(mongoose.connect).toHaveBeenCalledWith(process.env.MONGO_URI, {})
+    expect(mongoose.connect).toHaveBeenCalledWith(env.MONGO_URI, {})
     expect(console.error).toHaveBeenCalledWith(
       'Failed to connect to MongoDB',
       error,
