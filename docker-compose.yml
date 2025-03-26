@@ -1,19 +1,67 @@
 version: '3.8' # Specifying the version of the Docker Compose file format
 
 services:
-  app: # Defining the application service
-    build: . # Building the Docker image from the current directory
+  # API Gateway
+  api-gateway:
+    build:
+      context: ./services/api-gateway
+      dockerfile: Dockerfile
     ports:
       - '8000:8000' # Mapping host port 8000 to container port 8000
     environment:
       - NODE_ENV=production # Setting the Node.js environment to production
-      - MONGO_URI=mongodb://mongo:27017/tech-challenge-2 # MongoDB connection URI
+      - PORT=8000 # Setting the port for the API gateway
+      - USER_SERVICE_URL=http://user-service:3001 # URL for the user service
+      - POST_SERVICE_URL=http://post-service:3002 # URL for the post service
+    volumes:
+      - .:/src # Mounting the current directory to /src in the container
+      - /src/node_modules # Preventing overwriting of node_modules folder
+    command: npm run dev # Command to run the application in development mode
+    depends_on:
+      - user-service # Ensuring that the user service starts before this service
+      - post-service # Ensuring that the post service starts before this service
+    networks:
+      - microservice-network # Using the microservice network
+
+  # User Microservice
+  user-service:
+    build:
+      context: ./services/user-service
+      dockerfile: Dockerfile
+    ports:
+      - '3001:3001' # Mapping host port 3001 to container port 3001
+    environment:
+      - NODE_ENV=production # Setting the Node.js environment to production
+      - PORT=3001 # Setting the port for the user service
+      - MONGO_URI=mongodb://mongo:27017/user-service # MongoDB connection URI for the user service
     volumes:
       - .:/src # Mounting the current directory to /src in the container
       - /src/node_modules # Preventing overwriting of node_modules folder
     command: npm run dev # Command to run the application in development mode
     depends_on:
       - mongo # Ensuring that the mongo service starts before this service
+    networks:
+      - microservice-network # Using the microservice network
+
+  # Post Microservice
+  post-service:
+    build:
+      context: ./services/post-service
+      dockerfile: Dockerfile
+    ports:
+      - '3002:3002' # Mapping host port 3002 to container port 3002
+    environment:
+      - NODE_ENV=production # Setting the Node.js environment to production
+      - PORT=3002 # Setting the port for the post service
+      - MONGO_URI=mongodb://mongo:27017/post-service # MongoDB connection URI for the post service
+    volumes:
+      - .:/src # Mounting the current directory to /src in the container
+      - /src/node_modules # Preventing overwriting of node_modules folder
+    command: npm run dev # Command to run the application in development mode
+    depends_on:
+      - mongo # Ensuring that the mongo service starts before this service
+    networks:
+      - microservice-network # Using the microservice network
 
   mongo: # Defining the MongoDB service
     image: mongo:latest # Using the latest MongoDB image
@@ -21,6 +69,12 @@ services:
       - '27017:27017' # Mapping host port 27017 to container port 27017
     volumes:
       - mongo-data:/data/db # Persisting MongoDB data in a named volume
+    networks:
+      - microservice-network # Using the microservice network
 
 volumes:
   mongo-data: # Defining a named volume for MongoDB data persistence
+
+networks:
+  microservice-network:
+    driver: bridge # Using the bridge driver for the microservice network
